@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>传统mouse事件画画</title>
+  <style>
+      body{
+        margin:0px;
+        padding:0px;
+      }
+      #canvas{
+        height: 100vh;
+        background-color: red;
+        position: relative;
+      }
+  </style>
+</head>
+<body>
+  <div id="canvas"></div>
+
+  <script>
+    var candiv = document.getElementById('canvas');
+    var painting = false; //是否开启绘画模式
+    //鼠标按下
+    candiv.onmousedown = function(a){
+      painting = true //开启绘画
+      
+      //画一个小圆点
+      var x = a.clientX
+      var y = a.clientY
+     
+      indiv = document.createElement('div')
+      indiv.style = 'width:6px;height:6px;background-color:#000;border-radius:3px;position:absolute;left: '+ (x - 3)
+     + 'px;top: '+ (y - 3) +'px';
+      
+      candiv.appendChild(indiv)
+    }
+
+    //鼠标移动
+    candiv.onmousemove = function(a){
+      //检查如果开启绘画模式就画
+      if(painting){
+          var x = a.clientX
+          var y = a.clientY
+     
+          indiv = document.createElement('div')
+          indiv.style = 'width:6px;height:6px;background-color:#000;border-radius:3px;position:absolute;left: '+ (x - 3)
+     + 'px;top: '+ (y - 3) +'px';
+      
+          candiv.appendChild(indiv)
+      }
+      
+
+    }
+
+    //鼠标松开
+    candiv.onmouseup = function(b){
+      //关闭绘画模式
+      painting = false;
+    }
+
+  </script>
+
+</body>
+</html>
